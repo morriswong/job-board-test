@@ -1,0 +1,24 @@
+{
+  "name": "job-board",
+  "version": "1.0.0",
+  "description": "Hugo-based job board with Sveltia CMS",
+  "scripts": {
+    "dev": "hugo server -D",
+    "build": "hugo --gc --minify",
+    "cms:local": "npx @sveltia/cms-proxy-server",
+    "dev:cms": "concurrently \"npm run cms:local\" \"npm run dev\"",
+    "preview": "hugo server"
+  },
+  "keywords": [
+    "hugo",
+    "job-board",
+    "cms",
+    "sveltia"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@sveltia/cms-proxy-server": "latest",
+    "concurrently": "^8.2.2"
+  }
+}
+

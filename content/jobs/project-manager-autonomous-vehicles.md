@@ -4,8 +4,15 @@ date = 2025-10-22T07:30:00-00:00
 draft = false
 employer = 'IT Services and Consulting Firm (via Mandarin Recruitment)'
 location = 'Ipswich'
+workType = 'office'
+region = 'South East'
 jobType = 'Full time'
 salary = '£41,000'
+salaryMin = 41000
+salaryMax = 41000
+jobCategory = 'white-collar'
+industry = 'IT Services'
+languageRequirements = ['Mandarin']
 tags = ['project management', 'chinese', 'IT consulting', 'autonomous vehicles', 'technology']
 +++
 

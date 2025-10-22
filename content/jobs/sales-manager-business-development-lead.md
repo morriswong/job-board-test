@@ -4,8 +4,15 @@ date = 2025-10-22T10:00:00-00:00
 draft = false
 employer = 'London Start-up (via Mandarin Recruitment)'
 location = 'Remote'
+workType = 'remote'
+region = 'Remote'
 jobType = 'Full time'
 salary = '£33,000'
+salaryMin = 33000
+salaryMax = 33000
+jobCategory = 'white-collar'
+industry = 'Start-up'
+languageRequirements = ['Mandarin']
 tags = ['business development', 'sales', 'mandarin', 'remote', 'B2B']
 +++
 

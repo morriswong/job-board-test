@@ -1,0 +1,39 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<article class="blog-detail">
+    <header class="blog-header">
+        <h1>{{ .Title }}</h1>
+        <div class="blog-meta">
+            {{ if .Params.author }}
+            <span class="blog-author">By {{ .Params.author }}</span>
+            <span class="meta-separator">•</span>
+            {{ end }}
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+            {{ if .Params.tags }}
+            <span class="meta-separator">•</span>
+            <span class="reading-time">{{ div (countwords .Content) 200 }} min read</span>
+            {{ end }}
+        </div>
+        {{ if .Params.summary }}
+        <p class="blog-summary">{{ .Params.summary }}</p>
+        {{ end }}
+        {{ if .Params.tags }}
+        <div class="blog-tags">
+            {{ range .Params.tags }}
+            <a href="/tags/{{ . | urlize }}" class="tag">{{ . }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+    </header>
+    
+    <div class="blog-content">
+        {{ .Content }}
+    </div>
+    
+    <footer class="blog-detail-footer">
+        <a href="/blog" class="btn-secondary">← Back to all posts</a>
+    </footer>
+</article>
+{{ end }}
+

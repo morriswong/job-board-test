@@ -1,0 +1,44 @@
+{{ define "title" }}Blog - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<div class="blog-section">
+    <header class="blog-list-header">
+        <h1>Career Insights & Advice</h1>
+        <p class="blog-list-description">Tips, guides, and strategies to help you advance your career</p>
+    </header>
+    
+    <div class="blog-list">
+        {{ range .Pages }}
+        <article class="blog-card">
+            <div class="blog-card-content">
+                <time datetime="{{ .Date.Format "2006-01-02" }}" class="blog-date">
+                    {{ .Date.Format "January 2, 2006" }}
+                </time>
+                <h2>
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </h2>
+                {{ if .Params.summary }}
+                <p class="blog-excerpt">{{ .Params.summary }}</p>
+                {{ else }}
+                <p class="blog-excerpt">{{ .Summary }}</p>
+                {{ end }}
+                <div class="blog-card-meta">
+                    {{ if .Params.author }}
+                    <span class="blog-author">{{ .Params.author }}</span>
+                    {{ end }}
+                    {{ if .Params.tags }}
+                    <div class="blog-card-tags">
+                        {{ range first 3 .Params.tags }}
+                        <a href="/tags/{{ . | urlize }}" class="tag-small">{{ . }}</a>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+                <a href="{{ .Permalink }}" class="read-more">Read more →</a>
+            </div>
+        </article>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
+

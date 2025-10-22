@@ -1,16 +1,34 @@
-# Hugo
-public/
-resources/_gen/
-.hugo_build.lock
+# Hugo build output
+/public/
+/resources/_gen/
 
-# OS
+# Local Netlify folder
+.netlify
+
+# macOS
 .DS_Store
-Thumbs.db
 
-# Editor
-.vscode/
-.idea/
+# Editor directories and files
+.idea
+.vscode
 *.swp
 *.swo
 *~
 
+# Node modules (if using npm/yarn for additional tooling)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Hugo lock file
+.hugo_build.lock
+
+# Temporary files
+*.tmp
+*.log
+
+# Keep uploads directory but ignore its contents (except .gitkeep)
+# Uploads are managed by CMS and committed to git
+# Remove these lines if you want to track uploaded media
+# static/images/uploads/*
+# !static/images/uploads/.gitkeep

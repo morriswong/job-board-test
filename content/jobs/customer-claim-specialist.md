@@ -4,8 +4,15 @@ date = 2025-10-22T08:00:00-00:00
 draft = false
 employer = 'IT Consulting Firm (via Mandarin Recruitment)'
 location = 'Reading'
+workType = 'office'
+region = 'South East'
 jobType = 'Full time'
 salary = '£33,000'
+salaryMin = 33000
+salaryMax = 33000
+jobCategory = 'white-collar'
+industry = 'IT Services'
+languageRequirements = ['English']
 tags = ['customer service', 'IT consulting', 'claims management', 'client support']
 +++
 

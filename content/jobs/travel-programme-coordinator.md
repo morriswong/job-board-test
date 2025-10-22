@@ -4,8 +4,15 @@ date = 2025-10-22T09:00:00-00:00
 draft = false
 employer = 'Education Company (via Mandarin Recruitment)'
 location = 'Liverpool'
+workType = 'office'
+region = 'North West'
 jobType = 'Full time'
 salary = '£30,000'
+salaryMin = 30000
+salaryMax = 30000
+jobCategory = 'white-collar'
+industry = 'Education'
+languageRequirements = ['Mandarin', 'English']
 tags = ['education', 'mandarin', 'travel', 'programme coordination', 'sales']
 +++
 

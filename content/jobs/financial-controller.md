@@ -4,8 +4,15 @@ date = 2025-10-22T08:30:00-00:00
 draft = false
 employer = 'Machinery Manufacturing Company (via Mandarin Recruitment)'
 location = 'Norwich'
+workType = 'office'
+region = 'South East'
 jobType = 'Full time'
 salary = '£75,000'
+salaryMin = 75000
+salaryMax = 75000
+jobCategory = 'white-collar'
+industry = 'Manufacturing'
+languageRequirements = ['Mandarin', 'English']
 tags = ['finance', 'accounting', 'mandarin', 'manufacturing', 'management']
 +++
 

@@ -4,8 +4,15 @@ date = 2025-10-22T09:30:00-00:00
 draft = false
 employer = 'Education Administration Company (via Mandarin Recruitment)'
 location = 'London'
+workType = 'office'
+region = 'London'
 jobType = 'Full time'
 salary = '£55,000'
+salaryMin = 55000
+salaryMax = 55000
+jobCategory = 'white-collar'
+industry = 'Education'
+languageRequirements = ['Mandarin']
 tags = ['content management', 'social media', 'mandarin', 'education', 'marketing']
 +++
 

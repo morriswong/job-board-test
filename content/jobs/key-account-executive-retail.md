@@ -4,8 +4,15 @@ date = 2025-10-22T06:30:00-00:00
 draft = false
 employer = 'Food and Beverage Company (via Mandarin Recruitment)'
 location = 'Nottingham'
+workType = 'office'
+region = 'Midlands'
 jobType = 'Full time'
 salary = '£32,000'
+salaryMin = 32000
+salaryMax = 32000
+jobCategory = 'white-collar'
+industry = 'Food & Beverage'
+languageRequirements = ['English']
 tags = ['sales', 'account management', 'retail', 'food and beverage', 'FMCG']
 +++
 

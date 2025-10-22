@@ -1,0 +1,281 @@
+# Sveltia CMS Configuration for Job Board
+# Documentation: https://github.com/sveltia/sveltia-cms
+
+backend:
+  name: github
+  repo: your-username/job-board-test  # Replace with your GitHub username/repo
+  branch: main
+  base_url: https://api.netlify.com  # Required for Netlify Identity
+  auth_endpoint: auth
+
+# Uncomment to use local backend during development
+# local_backend: true
+
+# Media files configuration
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+# Site URL
+site_url: https://your-site.netlify.app  # Replace with your actual site URL
+
+# Collections
+collections:
+  - name: "jobs"
+    label: "Job Postings"
+    folder: "content/jobs"
+    create: true
+    slug: "{{slug}}"
+    format: "toml-frontmatter"
+    extension: "md"
+    editor:
+      preview: true
+    fields:
+      - label: "Job Title"
+        name: "title"
+        widget: "string"
+        required: true
+        hint: "The position title (e.g., 'Sales Manager - Business Development Lead')"
+
+      - label: "Publication Date"
+        name: "date"
+        widget: "datetime"
+        default: ""
+        format: "YYYY-MM-DDTHH:mm:ssZ"
+        hint: "When this job posting should be published"
+
+      - label: "Draft"
+        name: "draft"
+        widget: "boolean"
+        default: false
+        hint: "Set to true to hide this job from the public site"
+
+      - label: "Employer"
+        name: "employer"
+        widget: "string"
+        required: true
+        hint: "Company or organization name"
+
+      - label: "Employer Logo"
+        name: "employerLogo"
+        widget: "image"
+        required: false
+        default: "/images/logos/default.svg"
+        hint: "Upload a company logo (optional)"
+
+      - label: "Employer Description"
+        name: "employerDescription"
+        widget: "text"
+        required: false
+        hint: "Brief description of the employer (optional)"
+
+      - label: "Location"
+        name: "location"
+        widget: "string"
+        required: true
+        hint: "City or area (e.g., 'London', 'Reading', 'Remote')"
+
+      - label: "Work Type"
+        name: "workType"
+        widget: "select"
+        required: true
+        options:
+          - { label: "Office", value: "office" }
+          - { label: "Remote", value: "remote" }
+          - { label: "Hybrid", value: "hybrid" }
+        hint: "Where the work will be performed"
+
+      - label: "Region"
+        name: "region"
+        widget: "select"
+        required: true
+        options:
+          - "Greater Manchester"
+          - "Birstol"
+          - "Greater London"
+          - "Milton Keynes"
+          - "Nottingham"
+          - "Birmingham"
+          - "Scotland"
+          - "Leeds"
+        hint: "UK region or Remote"
+
+      - label: "Job Type"
+        name: "jobType"
+        widget: "select"
+        required: true
+        options:
+          - "Full time"
+          - "Part time"
+          - "Contract"
+          - "Temporary"
+          - "Internship"
+        default: "Full time"
+
+      - label: "Salary Display"
+        name: "salary"
+        widget: "string"
+        required: false
+        hint: "Human-readable salary (e.g., '£32,000', '£30,000 - £40,000', 'Competitive')"
+
+      - label: "Minimum Salary"
+        name: "salaryMin"
+        widget: "number"
+        required: false
+        value_type: "int"
+        hint: "Minimum salary in pounds (for filtering/sorting)"
+
+      - label: "Maximum Salary"
+        name: "salaryMax"
+        widget: "number"
+        required: false
+        value_type: "int"
+        hint: "Maximum salary in pounds (for filtering/sorting)"
+
+      - label: "Job Category"
+        name: "jobCategory"
+        widget: "select"
+        required: false
+        options:
+          - { label: "White Collar", value: "white-collar" }
+          - { label: "Blue Collar", value: "blue-collar" }
+          - { label: "Service", value: "service" }
+          - { label: "Technical", value: "technical" }
+          - { label: "Creative", value: "creative" }
+        hint: "General job category"
+
+      - label: "Industry"
+        name: "industry"
+        widget: "string"
+        required: false
+        hint: "Industry sector (e.g., 'IT Services', 'Retail', 'Finance')"
+
+      - label: "Department"
+        name: "department"
+        widget: "string"
+        required: false
+        hint: "Department within the organization (optional)"
+
+      - label: "Language Requirements"
+        name: "languageRequirements"
+        widget: "select"
+        multiple: true
+        required: false
+        options:
+          - "Mandarin"
+          - "Cantonese"
+          - "English"
+          - "Other Chinese Dialects"
+        hint: "Required languages for the position"
+
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        hint: "Keywords for categorization (e.g., 'sales', 'remote', 'B2B')"
+
+      - label: "Application URL"
+        name: "applyUrl"
+        widget: "string"
+        required: false
+        hint: "External application link (optional)"
+
+      - label: "Job Description"
+        name: "body"
+        widget: "markdown"
+        required: true
+        hint: "Full job description with responsibilities, qualifications, etc."
+
+  # Blog posts collection
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    format: "toml-frontmatter"
+    extension: "md"
+    editor:
+      preview: true
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        required: true
+        hint: "Blog post title"
+
+      - label: "Publication Date"
+        name: "date"
+        widget: "datetime"
+        default: ""
+        format: "YYYY-MM-DDTHH:mm:ssZ"
+        hint: "When this post should be published"
+
+      - label: "Draft"
+        name: "draft"
+        widget: "boolean"
+        default: false
+        hint: "Set to true to hide this post from the public site"
+
+      - label: "Author"
+        name: "author"
+        widget: "string"
+        required: true
+        hint: "Author name"
+
+      - label: "Summary"
+        name: "summary"
+        widget: "text"
+        required: true
+        hint: "Brief description of the blog post (for previews/SEO)"
+
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        hint: "Keywords for categorization"
+
+      - label: "Featured Image"
+        name: "featuredImage"
+        widget: "image"
+        required: false
+        hint: "Header image for the post (optional)"
+
+      - label: "Content"
+        name: "body"
+        widget: "markdown"
+        required: true
+        hint: "Full blog post content"
+
+  # Site settings collection
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "General Settings"
+        name: "general"
+        file: "hugo.toml"
+        fields:
+          - label: "Site Title"
+            name: "title"
+            widget: "string"
+          
+          - label: "Base URL"
+            name: "baseURL"
+            widget: "string"
+            hint: "Your site's URL"
+          
+          - label: "Language Code"
+            name: "languageCode"
+            widget: "string"
+            default: "en-us"
+          
+          - label: "Site Parameters"
+            name: "params"
+            widget: "object"
+            fields:
+              - label: "Description"
+                name: "description"
+                widget: "text"
+              
+              - label: "Tagline"
+                name: "tagline"
+                widget: "text"
+

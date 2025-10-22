@@ -7,8 +7,10 @@ A Hugo-based job board inspired by [Code4Lib Jobs](https://jobs.code4lib.org/), 
 - **Job Listings**: Browse recent job postings with detailed information
 - **Tagging System**: Filter jobs by technology, skills, and categories
 - **Employer Directory**: View all employers and their job postings
+- **Content Management**: Built-in CMS powered by [Sveltia CMS](https://github.com/sveltia/sveltia-cms)
 - **Clean Design**: Simple, accessible interface inspired by Code4Lib
 - **Static Site**: Fast, secure, and easy to deploy
+- **Git-Based**: All content stored in version control
 
 ## Getting Started
 
@@ -32,9 +34,40 @@ A Hugo-based job board inspired by [Code4Lib Jobs](https://jobs.code4lib.org/), 
 
 3. Open your browser to [http://localhost:1313](http://localhost:1313)
 
+## Content Management System
+
+This job board includes **Sveltia CMS**, a modern, user-friendly content management system. You can manage job postings through a web interface instead of editing markdown files directly.
+
+### Quick CMS Setup
+
+1. **For local development:**
+   - Uncomment `local_backend: true` in `static/admin/config.yml`
+   - Run: `npx @sveltia/cms-proxy-server`
+   - Access the CMS at: `http://localhost:1313/admin/`
+
+2. **For production (Netlify):**
+   - See the complete setup guide: **[CMS_SETUP.md](CMS_SETUP.md)**
+
+### CMS Features
+
+- 📝 Visual editor for creating and editing job postings
+- 🖼️ Media library for managing employer logos
+- 👀 Live preview of job listings
+- 📱 Mobile-friendly interface
+- 🌙 Dark mode support
+- 🔄 Git-based workflow (all changes committed to repository)
+
 ## Usage
 
 ### Creating a New Job Posting
+
+**Option 1: Using the CMS (Recommended)**
+1. Navigate to `/admin/` on your site
+2. Click "Job Postings" → "New Job Posting"
+3. Fill in the form fields
+4. Click "Save" or "Publish"
+
+**Option 2: Using Hugo CLI**
 
 ```bash
 hugo new jobs/job-title.md
@@ -87,8 +120,14 @@ job-board-test/
 │   ├── jobs/         # Job-specific templates
 │   └── taxonomy/     # Tag and employer pages
 ├── static/           # Static assets
-│   └── css/         # Stylesheets
+│   ├── admin/       # CMS interface
+│   │   ├── config.yml  # CMS configuration
+│   │   └── index.html  # CMS admin page
+│   ├── css/         # Stylesheets
+│   └── images/      # Media files
 ├── hugo.toml        # Site configuration
+├── netlify.toml     # Netlify deployment config
+├── CMS_SETUP.md     # Complete CMS setup guide
 └── README.md        # This file
 ```
 

@@ -4,8 +4,15 @@ date = 2025-10-22T05:30:00-00:00
 draft = false
 employer = 'Food Retailer (via Mandarin Recruitment)'
 location = 'Stratford, London'
+workType = 'office'
+region = 'London'
 jobType = 'Full time'
 salary = '£34,000'
+salaryMin = 34000
+salaryMax = 34000
+jobCategory = 'blue-collar'
+industry = 'Retail'
+languageRequirements = ['Mandarin', 'Cantonese']
 tags = ['retail management', 'chinese', 'customer service', 'food retail', 'team leadership']
 +++
 

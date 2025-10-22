@@ -4,8 +4,15 @@ date = 2025-10-22T06:00:00-00:00
 draft = false
 employer = 'Food and Beverages Wholesale Company (via Mandarin Recruitment)'
 location = 'Newport'
+workType = 'office'
+region = 'Wales'
 jobType = 'Full time'
 salary = '£25,000'
+salaryMin = 25000
+salaryMax = 25000
+jobCategory = 'blue-collar'
+industry = 'Food & Beverage'
+languageRequirements = ['Cantonese', 'Mandarin']
 tags = ['sales', 'cantonese', 'mandarin', 'food and beverage', 'wholesale']
 +++
 
