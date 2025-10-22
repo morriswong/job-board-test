@@ -7,9 +7,6 @@
     <div class="job-list">
         {{ range .Pages }}
         <article class="job-card">
-            <div class="job-logo">
-                <img src="{{ .Params.employerLogo | default "/images/logos/default.svg" }}" alt="{{ .Params.employer }} logo">
-            </div>
             <div class="job-card-content">
                 <div class="job-card-header">
                     <span class="job-company-name">{{ .Params.employer }}</span>
@@ -34,7 +31,7 @@
                 </div>
             </div>
             <div class="job-apply-btn">
-                <a href="{{ .Params.applyUrl | default .Permalink }}" class="btn-apply">Apply</a>
+                <a href="{{ .Permalink }}" class="btn-apply">Apply</a>
             </div>
         </article>
         {{ end }}
