@@ -212,9 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
     filterPills.forEach(pill => {
         console.log('Adding click listener to pill:', pill.id);
         
-        // Handle both click and touch events for iOS/Android
         const handlePillClick = function(e) {
-            e.preventDefault();
             e.stopPropagation();
             console.log('Pill clicked:', this.id);
             const filterType = this.dataset.filter;
@@ -240,13 +238,11 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         pill.addEventListener('click', handlePillClick);
-        pill.addEventListener('touchend', handlePillClick);
     });
 
     // Handle filter option selection
     document.querySelectorAll('.filter-option').forEach(option => {
         const handleOptionClick = function(e) {
-            e.preventDefault();
             e.stopPropagation();
             const dropdown = this.closest('.filter-dropdown');
             const filterType = dropdown.id.replace('-dropdown', '');
@@ -280,7 +276,6 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         option.addEventListener('click', handleOptionClick);
-        option.addEventListener('touchend', handleOptionClick);
     });
 
     // Close dropdowns when clicking outside
