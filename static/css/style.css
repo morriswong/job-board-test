@@ -314,7 +314,7 @@ header nav a:hover {
 }
 
 .btn-apply {
-    background-color: #ff6600;
+    background-color: #C8102E;
     color: #fff;
     padding: 10px 24px;
     border-radius: 4px;
@@ -328,7 +328,7 @@ header nav a:hover {
 }
 
 .btn-apply:hover {
-    background-color: #e65c00;
+    background-color: #a00d25;
     text-decoration: none;
 }
 
