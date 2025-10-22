@@ -1,0 +1,30 @@
+{{ define "title" }}All Jobs - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<h1>All Jobs</h1>
+
+<div class="job-list">
+    {{ range .Pages }}
+    <article class="job-card">
+        <div class="job-card-content">
+            <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+            <span class="job-meta">
+                <strong>{{ .Params.employer }}</strong> — {{ .Params.location }}
+                {{ if .Params.tags }}
+                <span class="job-tags">
+                    {{ range .Params.tags }}
+                    <span class="tag">{{ . }}</span>
+                    {{ end }}
+                </span>
+                {{ end }}
+                <span class="job-footer">
+                    <span class="job-type">{{ .Params.jobType }}</span>
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2" }}</time>
+                </span>
+            </span>
+        </div>
+    </article>
+    {{ end }}
+</div>
+{{ end }}
+

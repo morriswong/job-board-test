@@ -1,0 +1,17 @@
+{{ define "title" }}All Tags - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<h1>All Tags</h1>
+
+<div class="tags-cloud">
+    {{ range .Data.Terms.ByCount }}
+    <div class="tag-item">
+        <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
+        <span class="count">({{ .Count }})</span>
+    </div>
+    {{ end }}
+</div>
+
+<p><a href="/">← Back to jobs</a></p>
+{{ end }}
+

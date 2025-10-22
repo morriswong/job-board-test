@@ -1,0 +1,17 @@
+{{ define "title" }}All Employers - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<h1>All Employers</h1>
+
+<div class="employers-list">
+    {{ range .Data.Terms.Alphabetical }}
+    <div class="employer-item">
+        <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
+        <span class="count">({{ .Count }} {{ if eq .Count 1 }}job{{ else }}jobs{{ end }})</span>
+    </div>
+    {{ end }}
+</div>
+
+<p><a href="/">← Back to jobs</a></p>
+{{ end }}
+

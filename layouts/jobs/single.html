@@ -1,0 +1,31 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<article class="job-detail">
+    <header>
+        <h1>{{ .Title }}</h1>
+        <div class="job-meta-detail">
+            <p><strong>Employer:</strong> {{ .Params.employer }}</p>
+            <p><strong>Location:</strong> {{ .Params.location }}</p>
+            <p><strong>Job Type:</strong> {{ .Params.jobType }}</p>
+            <p><strong>Posted:</strong> <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></p>
+        </div>
+        {{ if .Params.tags }}
+        <div class="job-tags">
+            {{ range .Params.tags }}
+            <a href="/tags/{{ . | urlize }}" class="tag">{{ . }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+    </header>
+    
+    <div class="job-content">
+        {{ .Content }}
+    </div>
+    
+    <footer class="job-detail-footer">
+        <a href="/" class="btn-secondary">← Back to all jobs</a>
+    </footer>
+</article>
+{{ end }}
+

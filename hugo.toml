@@ -1,0 +1,14 @@
+baseURL = '/'
+languageCode = 'en-us'
+title = 'Job Board'
+
+[params]
+  description = 'A community job board for tech professionals in the cultural heritage sector'
+  tagline = 'Connecting talent with opportunities in libraries, archives, and museums'
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[taxonomies]
+  tag = 'tags'
+  employer = 'employers'

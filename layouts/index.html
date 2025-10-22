@@ -1,0 +1,43 @@
+{{ define "main" }}
+<div class="hero">
+    <h1>{{ .Site.Title }}</h1>
+    <p class="tagline">{{ .Site.Params.tagline }}</p>
+    <p class="description">{{ .Site.Params.description }}</p>
+    <a href="/jobs/new/" class="btn-primary">Post new job</a>
+</div>
+
+<section class="jobs-section">
+    <h2>Sponsored jobs ›</h2>
+    
+    <div class="job-list">
+        {{ $sponsoredJobs := where .Site.RegularPages "Params.sponsored" true }}
+        {{ range first 10 $sponsoredJobs }}
+        <article class="job-card">
+            <div class="job-card-content">
+                <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                {{ if .Params.sponsored }}
+                <span class="sponsored-badge">SPONSORED</span>
+                {{ end }}
+                <span class="job-meta">
+                    <strong>{{ .Params.employer }}</strong> — {{ .Params.location }}
+                    {{ if .Params.tags }}
+                    <span class="job-tags">
+                        {{ range .Params.tags }}
+                        <span class="tag">{{ . }}</span>
+                        {{ end }}
+                    </span>
+                    {{ end }}
+                    <span class="job-footer">
+                        <span class="job-type">{{ .Params.jobType }}</span>
+                        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2" }}</time>
+                    </span>
+                </span>
+            </div>
+        </article>
+        {{ end }}
+    </div>
+    
+    <a href="/jobs/" class="view-all">View all jobs</a>
+</section>
+{{ end }}
+
