@@ -29,10 +29,25 @@
                 </div>
             </div>
 
+            <!-- Employment Type Filter -->
+            <div class="filter-pill-wrapper">
+                <button class="filter-pill" id="employmenttype-pill" data-filter="employmenttype">
+                    <span class="filter-label">Employment Type</span>
+                    <span class="filter-value" id="employmenttype-value">All Types</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="filter-dropdown" id="employmenttype-dropdown">
+                    <button class="filter-option selected" data-value="">All Types</button>
+                    <button class="filter-option" data-value="Full time">Full-time</button>
+                    <button class="filter-option" data-value="Part time">Part-time</button>
+                    <button class="filter-option" data-value="Contract">Contract</button>
+                </div>
+            </div>
+
             <!-- Work Type Filter -->
             <div class="filter-pill-wrapper">
                 <button class="filter-pill" id="worktype-pill" data-filter="worktype">
-                    <span class="filter-label">Work Type</span>
+                    <span class="filter-label">Work Location</span>
                     <span class="filter-value" id="worktype-value">All Types</span>
                     <span class="dropdown-arrow">▼</span>
                 </button>
@@ -41,36 +56,6 @@
                     <button class="filter-option" data-value="remote">Remote</button>
                     <button class="filter-option" data-value="office">Office-based</button>
                     <button class="filter-option" data-value="hybrid">Hybrid</button>
-                </div>
-            </div>
-
-            <!-- Salary Filter -->
-            <div class="filter-pill-wrapper">
-                <button class="filter-pill" id="salary-pill" data-filter="salary">
-                    <span class="filter-label">Salary</span>
-                    <span class="filter-value" id="salary-value">All Salaries</span>
-                    <span class="dropdown-arrow">▼</span>
-                </button>
-                <div class="filter-dropdown" id="salary-dropdown">
-                    <button class="filter-option selected" data-value="">All Salaries</button>
-                    <button class="filter-option" data-value="20000-30000">£20K - £30K</button>
-                    <button class="filter-option" data-value="30000-40000">£30K - £40K</button>
-                    <button class="filter-option" data-value="40000-60000">£40K - £60K</button>
-                    <button class="filter-option" data-value="60000-999999">£60K+</button>
-                </div>
-            </div>
-
-            <!-- Category Filter -->
-            <div class="filter-pill-wrapper">
-                <button class="filter-pill" id="category-pill" data-filter="category">
-                    <span class="filter-label">Category</span>
-                    <span class="filter-value" id="category-value">All Categories</span>
-                    <span class="dropdown-arrow">▼</span>
-                </button>
-                <div class="filter-dropdown" id="category-dropdown">
-                    <button class="filter-option selected" data-value="">All Categories</button>
-                    <button class="filter-option" data-value="white-collar">Professional / Management</button>
-                    <button class="filter-option" data-value="blue-collar">Retail & Service</button>
                 </div>
             </div>
 
@@ -99,11 +84,8 @@
         {{ range first 5 $sponsoredJobs }}
         <article class="job-card" 
                  data-region="{{ .Params.region | default "" }}"
-                 data-work-type="{{ .Params.workType | default "" }}"
-                 data-salary-min="{{ .Params.salaryMin | default 0 }}"
-                 data-salary-max="{{ .Params.salaryMax | default 0 }}"
-                 data-category="{{ .Params.jobCategory | default "" }}"
-                 data-industry="{{ .Params.industry | default "" }}">
+                 data-employment-type="{{ .Params.jobType | default "Full time" }}"
+                 data-work-type="{{ .Params.workType | default "" }}">
             <div class="job-card-content">
                 <div class="job-card-header">
                     <span class="job-company-name">{{ .Params.employer }}</span>
@@ -140,11 +122,8 @@
         {{ range first 20 $regularJobs }}
         <article class="job-card" 
                  data-region="{{ .Params.region | default "" }}"
-                 data-work-type="{{ .Params.workType | default "" }}"
-                 data-salary-min="{{ .Params.salaryMin | default 0 }}"
-                 data-salary-max="{{ .Params.salaryMax | default 0 }}"
-                 data-category="{{ .Params.jobCategory | default "" }}"
-                 data-industry="{{ .Params.industry | default "" }}">
+                 data-employment-type="{{ .Params.jobType | default "Full time" }}"
+                 data-work-type="{{ .Params.workType | default "" }}">
             <div class="job-card-content">
                 <div class="job-card-header">
                     <span class="job-company-name">{{ .Params.employer }}</span>
@@ -208,76 +187,118 @@
 {{ end }}
 
 <script>
-(function() {
-    const toggleFiltersBtn = document.getElementById('toggle-filters');
-    const filtersPanel = document.getElementById('filters-panel');
-    const filterBadge = document.getElementById('filter-badge');
-    const filterRegion = document.getElementById('filter-region');
-    const filterWorkType = document.getElementById('filter-work-type');
-    const filterSalary = document.getElementById('filter-salary');
-    const filterCategory = document.getElementById('filter-category');
+document.addEventListener('DOMContentLoaded', function() {
+    'use strict';
+
+    // Get all filter elements
+    const filterPills = document.querySelectorAll('.filter-pill[data-filter]');
+    const filterDropdowns = document.querySelectorAll('.filter-dropdown');
     const clearFilters = document.getElementById('clear-filters');
     const jobCount = document.getElementById('job-count');
-    const jobCountMobile = document.getElementById('job-count-mobile');
     const jobCards = document.querySelectorAll('.job-card');
+    
+    console.log('Filter pills found:', filterPills.length);
+    console.log('Filter dropdowns found:', filterDropdowns.length);
+    console.log('Job cards found:', jobCards.length);
 
-    // Toggle filters panel on mobile
-    if (toggleFiltersBtn) {
-        toggleFiltersBtn.addEventListener('click', function() {
-            filtersPanel.classList.toggle('open');
-            toggleFiltersBtn.classList.toggle('active');
+    // Current filter values
+    const filters = {
+        region: '',
+        employmenttype: '',
+        worktype: ''
+    };
+
+    // Toggle dropdown
+    filterPills.forEach(pill => {
+        console.log('Adding click listener to pill:', pill.id);
+        pill.addEventListener('click', function(e) {
+            e.stopPropagation();
+            console.log('Pill clicked:', this.id);
+            const filterType = this.dataset.filter;
+            console.log('Filter type:', filterType);
+            const dropdown = document.getElementById(`${filterType}-dropdown`);
+            console.log('Dropdown element:', dropdown);
+            
+            // Close all other dropdowns
+            filterDropdowns.forEach(dd => {
+                if (dd !== dropdown) {
+                    dd.classList.remove('open');
+                }
+            });
+            
+            // Calculate position for fixed dropdown
+            const rect = this.getBoundingClientRect();
+            dropdown.style.top = `${rect.bottom + 8}px`;
+            dropdown.style.left = `${rect.left}px`;
+            
+            // Toggle current dropdown
+            dropdown.classList.toggle('open');
+            console.log('Dropdown open state:', dropdown.classList.contains('open'));
         });
-    }
+    });
 
-    function updateFilterBadge() {
-        let activeFilters = 0;
-        if (filterRegion.value) activeFilters++;
-        if (filterWorkType.value) activeFilters++;
-        if (filterSalary.value) activeFilters++;
-        if (filterCategory.value) activeFilters++;
-        
-        if (activeFilters > 0) {
-            filterBadge.textContent = activeFilters;
-            filterBadge.classList.remove('hidden');
-        } else {
-            filterBadge.classList.add('hidden');
-        }
-    }
+    // Handle filter option selection
+    document.querySelectorAll('.filter-option').forEach(option => {
+        option.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const dropdown = this.closest('.filter-dropdown');
+            const filterType = dropdown.id.replace('-dropdown', '');
+            const pill = document.getElementById(`${filterType}-pill`);
+            const valueSpan = document.getElementById(`${filterType}-value`);
+            const value = this.dataset.value;
+            const label = this.textContent;
 
+            // Update filter value
+            filters[filterType] = value;
+            valueSpan.textContent = label;
+
+            // Update pill active state
+            if (value) {
+                pill.classList.add('active');
+            } else {
+                pill.classList.remove('active');
+            }
+
+            // Update selected state in dropdown
+            dropdown.querySelectorAll('.filter-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            this.classList.add('selected');
+
+            // Close dropdown
+            dropdown.classList.remove('open');
+
+            // Apply filters
+            filterJobs();
+        });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function() {
+        filterDropdowns.forEach(dropdown => {
+            dropdown.classList.remove('open');
+        });
+    });
+
+    // Filter jobs function
     function filterJobs() {
-        const regionValue = filterRegion.value;
-        const workTypeValue = filterWorkType.value;
-        const salaryValue = filterSalary.value;
-        const categoryValue = filterCategory.value;
-
         let visibleCount = 0;
 
         jobCards.forEach(card => {
             let show = true;
 
             // Filter by region
-            if (regionValue && card.dataset.region !== regionValue) {
+            if (filters.region && card.dataset.region !== filters.region) {
+                show = false;
+            }
+
+            // Filter by employment type
+            if (filters.employmenttype && card.dataset.employmentType !== filters.employmenttype) {
                 show = false;
             }
 
             // Filter by work type
-            if (workTypeValue && card.dataset.workType !== workTypeValue) {
-                show = false;
-            }
-
-            // Filter by salary range
-            if (salaryValue) {
-                const [minSalary, maxSalary] = salaryValue.split('-').map(Number);
-                const jobSalaryMin = parseInt(card.dataset.salaryMin) || 0;
-                const jobSalaryMax = parseInt(card.dataset.salaryMax) || 0;
-                
-                if (jobSalaryMax < minSalary || jobSalaryMin > maxSalary) {
-                    show = false;
-                }
-            }
-
-            // Filter by category
-            if (categoryValue && card.dataset.category !== categoryValue) {
+            if (filters.worktype && card.dataset.workType !== filters.worktype) {
                 show = false;
             }
 
@@ -293,30 +314,43 @@
         // Update job count
         const countText = `${visibleCount} job${visibleCount !== 1 ? 's' : ''}`;
         if (jobCount) jobCount.textContent = countText;
-        if (jobCountMobile) jobCountMobile.textContent = countText;
-        
-        // Update filter badge
-        updateFilterBadge();
     }
 
-    function clearAllFilters() {
-        filterRegion.value = '';
-        filterWorkType.value = '';
-        filterSalary.value = '';
-        filterCategory.value = '';
+    // Clear all filters
+    clearFilters.addEventListener('click', function() {
+        // Reset filter values
+        filters.region = '';
+        filters.employmenttype = '';
+        filters.worktype = '';
+
+        // Reset pill states and labels
+        filterPills.forEach(pill => {
+            pill.classList.remove('active');
+            const filterType = pill.dataset.filter;
+            const valueSpan = document.getElementById(`${filterType}-value`);
+            const dropdown = document.getElementById(`${filterType}-dropdown`);
+            const defaultOption = dropdown.querySelector('.filter-option[data-value=""]');
+            if (valueSpan && defaultOption) {
+                valueSpan.textContent = defaultOption.textContent;
+            }
+            
+            // Reset selected states
+            dropdown.querySelectorAll('.filter-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            if (defaultOption) {
+                defaultOption.classList.add('selected');
+            }
+        });
+
+        // Reapply filters
         filterJobs();
-    }
+    });
 
-    // Event listeners
-    filterRegion.addEventListener('change', filterJobs);
-    filterWorkType.addEventListener('change', filterJobs);
-    filterSalary.addEventListener('change', filterJobs);
-    filterCategory.addEventListener('change', filterJobs);
-    clearFilters.addEventListener('click', clearAllFilters);
-
-    // Initialize count
+    // Initialize
     filterJobs();
-})();
+});
 </script>
 {{ end }}
+
 
