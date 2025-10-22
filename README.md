@@ -115,20 +115,15 @@ Templates are in the `layouts/` directory:
 
 ## Deployment
 
-This site is configured for Cloudflare Pages deployment. See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.
+This is a static Hugo site that can be deployed to any static hosting service:
 
-### Quick Deploy Options:
+- [Netlify](https://www.netlify.com/)
+- [Vercel](https://vercel.com/)
+- [GitHub Pages](https://pages.github.com/)
+- [Cloudflare Pages](https://pages.cloudflare.com/)
+- Any static hosting service
 
-1. **Cloudflare Pages (Recommended)**
-   - Connect your GitHub repo directly in Cloudflare Dashboard
-   - Or use GitHub Actions workflow (see `.github/workflows/`)
-   - Automatic deployments on every push
-
-2. **Other Options**
-   - [Netlify](https://www.netlify.com/)
-   - [Vercel](https://vercel.com/)
-   - [GitHub Pages](https://pages.github.com/)
-   - Any static hosting service
+Simply run `hugo` to build the site, and deploy the `public/` directory.
 
 ## License
 

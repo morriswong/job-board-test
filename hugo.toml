@@ -3,8 +3,8 @@ languageCode = 'en-us'
 title = 'Job Board'
 
 [params]
-  description = 'A community job board for tech professionals in the cultural heritage sector'
-  tagline = 'Connecting talent with opportunities in libraries, archives, and museums'
+  description = 'A job board featuring opportunities for Mandarin and Cantonese speaking professionals in the UK'
+  tagline = 'Connecting bilingual talent with diverse career opportunities across industries'
 
 [markup.goldmark.renderer]
   unsafe = true
