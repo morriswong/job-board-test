@@ -3,7 +3,7 @@
 
 backend:
   name: github
-  repo: your-username/job-board-test  # Replace with your GitHub username/repo
+  repo: morriswong/job-board-test  # Your GitHub repository
   branch: main
   base_url: https://api.netlify.com  # Required for Netlify Identity
   auth_endpoint: auth
