@@ -3,15 +3,9 @@ title = 'Information Technology Manager'
 date = 2025-10-14T10:00:00-00:00
 draft = false
 employer = 'Boston Athenaeum'
-employerLogo = '/images/logos/default.svg'
-employerDescription = 'Historic independent library and cultural institution'
 location = 'Boston, MA'
-jobType = 'Full-time'
-department = 'Technology'
-salaryRange = '$80K - $100K'
+jobType = 'Full time'
 tags = ['technical support', 'microsoft windows', 'salesforce', 'contentdm', 'management', 'database', 'folio', 'google workspace', 'linux']
-applyUrl = 'https://bostonathenaeum.org/careers'
-sponsored = true
 +++
 
 ## Position Overview

@@ -3,15 +3,9 @@ title = 'Digital Initiatives Librarian'
 date = 2025-10-17T10:00:00-00:00
 draft = false
 employer = 'Florida International University'
-employerLogo = '/images/logos/default.svg'
-employerDescription = 'A top public university driving innovation in Miami'
 location = 'Miami, Florida'
-jobType = 'Full-time'
-department = 'Libraries'
-salaryRange = '$60K - $75K'
+jobType = 'Full time'
 tags = ['digital initiatives', 'libraries', 'metadata']
-applyUrl = 'https://fiu.edu/apply'
-sponsored = true
 +++
 
 Florida International University is a top public university that drives real talent and innovation in Miami and globally. Very high research (R1) activity and high social mobility come together at FIU to uplift and accelerate learner success in South Florida and beyond. FIU ranks 15th in the nation among public universities for awarding bachelor's degrees to Hispanic students. With a student body of more than 56,000 and growing, FIU is among the largest universities in the U.S.
