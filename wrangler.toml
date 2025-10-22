@@ -1,0 +1,9 @@
+name = "job-board"
+compatibility_date = "2024-10-22"
+
+[build]
+command = "hugo --gc --minify"
+
+[site]
+bucket = "./public"
+
