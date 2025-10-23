@@ -611,7 +611,6 @@ main > h1 {
     overflow-x: auto;
     padding: 5px 0;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 }
@@ -676,15 +675,18 @@ main > h1 {
 
 .filter-pill .filter-label {
     font-weight: 600;
+    pointer-events: none;
 }
 
 .filter-pill .filter-value {
     font-weight: 400;
+    pointer-events: none;
 }
 
 .filter-pill .dropdown-arrow {
     font-size: 10px;
     margin-left: 2px;
+    pointer-events: none;
 }
 
 /* Clear all button styling */
