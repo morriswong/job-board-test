@@ -278,11 +278,22 @@ document.addEventListener('DOMContentLoaded', function() {
         option.addEventListener('click', handleOptionClick);
     });
 
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', function() {
-        filterDropdowns.forEach(dropdown => {
-            dropdown.classList.remove('open');
-        });
+    // Close dropdowns when clicking outside (with delay to fix iOS timing issues)
+    document.addEventListener('click', function(e) {
+        // Don't close if clicking on a pill - the pill handler will manage it
+        if (e.target.closest('.filter-pill')) {
+            return;
+        }
+
+        // Small delay to ensure pill click is processed first on iOS
+        setTimeout(function() {
+            filterDropdowns.forEach(dropdown => {
+                // Only close if not clicking inside the dropdown
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('open');
+                }
+            });
+        }, 10);
     });
 
     // Filter jobs function
